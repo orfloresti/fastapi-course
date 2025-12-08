@@ -1,4 +1,4 @@
-# FASTAPI fundamentals
+# Fastapi course
 
 ## develop
 
