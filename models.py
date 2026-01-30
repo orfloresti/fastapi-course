@@ -1,6 +1,7 @@
 from pydantic import BaseModel
+from sqlmodel import SQLModel
 
-class CustomerBase(BaseModel):
+class CustomerBase(SQLModel):
     name: str
     description: str | None
     email: str
@@ -9,7 +10,7 @@ class CustomerBase(BaseModel):
 class CustomerCreate(CustomerBase):
     pass
 
-class Customer(CustomerBase):
+class Customer(CustomerBase, table=True):
     id: int | None = None
 
 class Transaction(BaseModel):

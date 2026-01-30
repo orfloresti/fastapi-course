@@ -2,6 +2,7 @@ from datetime import datetime
 import zoneinfo
 
 from fastapi import FastAPI
+from db import SessionDep
 from models import CustomerCreate, Transaction, Invoice, Customer
 
 app = FastAPI()
@@ -30,7 +31,7 @@ async def time(iso_code: str):
 db_customers: list[Customer] = []
 
 @app.post('/customers', response_model=Customer)
-async def create_customer(customer_data: CustomerCreate):
+async def create_customer(customer_data: CustomerCreate, session: SessionDep):
     customer = Customer.model_validate(customer_data.model_dump())
 
     db_customers.append(customer)
